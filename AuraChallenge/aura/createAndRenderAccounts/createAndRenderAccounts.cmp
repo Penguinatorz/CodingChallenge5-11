@@ -1,0 +1,21 @@
+<aura:component controller="createAndRenderAccountsController" implements="flexipage:availableForAllPageTypes">
+
+    <aura:attribute name="acc" type="Account" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <force:recordData aura:id="recordData" targetFields="{!v.acc}" fields="Name,Phone" />
+    <lightning:card>
+        <lightning:input label="Account Name" required="true" value="{!v.acc.Name}" />
+        <lightning:input label="Phone" value="{!v.acc.Phone}" />
+        <lightning:button label="Save Record" onclick="{!c.save}" />
+    </lightning:card>
+
+
+    <aura:attribute name="accList" type="Account[]" />
+    <aura:attribute name="columns" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+
+    <lightning:datatable data="{!v.accList}" columns="{!v.columns}" keyField="id" hideCheckboxColumn="true" />
+
+</aura:component>
